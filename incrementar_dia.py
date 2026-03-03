@@ -12,4 +12,4 @@ fecha = date(yyyy, mm, dd)
 
 siguiente = fecha + timedelta(days=1)
 
-print(siguiente.strftime("%d %m %Y"))
+print("Siguiente día: ", siguiente.strftime("%d %m %Y"))
