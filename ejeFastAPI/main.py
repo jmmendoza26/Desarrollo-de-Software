@@ -1,4 +1,4 @@
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, HTTPException
 
 app = FastAPI()
 
@@ -44,44 +44,64 @@ def mensaje3(edad:int = 18, nombre:str ='',semestre:int = 1):
 def listProductos():
     return productos
 
+# Validación 1: código mayor a cero
+# Validación 2: mensaje si no existe
 @app.get('/productos/{cod}')
 def findProduct(cod:int):
+    if cod <= 0:
+        raise HTTPException(status_code=400, detail="El código debe ser mayor a cero")
     for p in productos:
         if p["codigo"] == cod:
             return p
-    return f"Producto {cod} no encontrado"
+    raise HTTPException(status_code=404, detail=f"Producto con código {cod} no encontrado")
 
 @app.get('/productos/')
 def findProduct2(nom:str=""):
     for p in productos:
         if p["nombre"] == nom:
             return p
-    return f"Producto {nom} no encontrado"
+    raise HTTPException(status_code=404, detail=f"Producto '{nom}' no encontrado")
 
+# Validación 3: código consecutivo automático
+# Validación 4: valor y existencias mayores a cero
 @app.post('/productos')
-def createProduct(nombre:str,codigo:int,valor:float,existencias:int):
-    productos.append(
-        {"codigo":codigo,
-         "nombre":nombre,
-         "valor":valor,
-         "existencias":existencias}
-    )
-    return productos
+def createProduct(nombre:str, valor:float, existencias:int):
+    if valor <= 0:
+        raise HTTPException(status_code=400, detail="El valor debe ser mayor a cero")
+    if existencias <= 0:
+        raise HTTPException(status_code=400, detail="Las existencias deben ser mayores a cero")
+    nuevo_codigo = max(p["codigo"] for p in productos) + 1 if productos else 1
+    nuevo_producto = {
+        "codigo": nuevo_codigo,
+        "nombre": nombre,
+        "valor": valor,
+        "existencias": existencias
+    }
+    productos.append(nuevo_producto)
+    return nuevo_producto
 
 @app.post('/productos2')
 def createProduct2(
     nombre:str=Body(),
-    codigo:int=Body(),
     valor:float=Body(),
     existencias:int=Body()):
-    productos.append(
-        {"codigo":codigo,
-         "nombre":nombre,
-         "valor":valor,
-         "existencias":existencias}
-    )
-    return productos
+    if valor <= 0:
+        raise HTTPException(status_code=400, detail="El valor debe ser mayor a cero")
+    if existencias <= 0:
+        raise HTTPException(status_code=400, detail="Las existencias deben ser mayores a cero")
+    nuevo_codigo = max(p["codigo"] for p in productos) + 1 if productos else 1
+    nuevo_producto = {
+        "codigo": nuevo_codigo,
+        "nombre": nombre,
+        "valor": valor,
+        "existencias": existencias
+    }
+    productos.append(nuevo_producto)
+    return nuevo_producto
 
+# Validación 5: error si no existe
+# Validación 6: valor y existencias mayores a cero
+# Validación 7: mostrar producto antes y después
 @app.put('/producto')
 def updateProduct(
     cod:int,
@@ -89,16 +109,24 @@ def updateProduct(
     val:float=Body(),
     exis:int=Body()
     ):
+    if val <= 0:
+        raise HTTPException(status_code=400, detail="El valor debe ser mayor a cero")
+    if exis <= 0:
+        raise HTTPException(status_code=400, detail="Las existencias deben ser mayores a cero")
     for prod in productos:
         if prod["codigo"] == cod:
+            antes = dict(prod)
             prod["nombre"] = nom
             prod["valor"] = val
-            prod["existenvias"] = exis
-    return productos
+            prod["existencias"] = exis
+            return {"antes": antes, "después": dict(prod)}
+    raise HTTPException(status_code=404, detail=f"Producto con código {cod} no encontrado")
 
+# Validación 8: error si no existe, mostrar producto eliminado
 @app.delete('/productos/{cod}')
 def deleteProduct(cod:int):
     for prod in productos:
         if prod["codigo"] == cod:
             productos.remove(prod)
-    return productos
+            return {"mensaje": "Producto eliminado", "producto": prod}
+    raise HTTPException(status_code=404, detail=f"Producto con código {cod} no encontrado")
