@@ -1,23 +1,36 @@
+import csv
+import os
 from fastapi import Body, FastAPI, HTTPException
 
 app = FastAPI()
 
-productos = [{
-    "codigo" : 1,
-    "nombre" : "Esfero",
-    "valor": 3500,
-    "existencias": 10
-},{
-    "codigo" : 2,
-    "nombre" : "Cuaderno",
-    "valor": 5000,
-    "existencias": 25
-},{
-    "codigo" : 3,
-    "nombre" : "Lápiz",
-    "valor": 200,
-    "existencias": 12
-},]
+ARCHIVO_CSV = "productos.csv"
+
+PRODUCTOS_INICIALES = [
+    {"codigo": 1, "nombre": "Esfero", "valor": 3500, "existencias": 10},
+    {"codigo": 2, "nombre": "Cuaderno", "valor": 5000, "existencias": 25},
+    {"codigo": 3, "nombre": "Lápiz", "valor": 200, "existencias": 12},
+]
+
+def cargar_productos() -> list[dict]:
+    if not os.path.exists(ARCHIVO_CSV):
+        guardar_productos(PRODUCTOS_INICIALES)
+        return [dict(p) for p in PRODUCTOS_INICIALES]
+    with open(ARCHIVO_CSV, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return [
+            {"codigo": int(row["codigo"]), "nombre": row["nombre"],
+             "valor": float(row["valor"]), "existencias": int(row["existencias"])}
+            for row in reader
+        ]
+
+def guardar_productos(lista: list[dict]):
+    with open(ARCHIVO_CSV, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["codigo", "nombre", "valor", "existencias"])
+        writer.writeheader()
+        writer.writerows(lista)
+
+productos = cargar_productos()
 
 # --------------------
 # Parámetros por ruta
@@ -78,6 +91,7 @@ def createProduct(nombre:str, valor:float, existencias:int):
         "existencias": existencias
     }
     productos.append(nuevo_producto)
+    guardar_productos(productos)
     return nuevo_producto
 
 @app.post('/productos2')
@@ -97,6 +111,7 @@ def createProduct2(
         "existencias": existencias
     }
     productos.append(nuevo_producto)
+    guardar_productos(productos)
     return nuevo_producto
 
 # Validación 5: error si no existe
@@ -119,6 +134,7 @@ def updateProduct(
             prod["nombre"] = nom
             prod["valor"] = val
             prod["existencias"] = exis
+            guardar_productos(productos)
             return {"antes": antes, "después": dict(prod)}
     raise HTTPException(status_code=404, detail=f"Producto con código {cod} no encontrado")
 
@@ -128,5 +144,6 @@ def deleteProduct(cod:int):
     for prod in productos:
         if prod["codigo"] == cod:
             productos.remove(prod)
+            guardar_productos(productos)
             return {"mensaje": "Producto eliminado", "producto": prod}
     raise HTTPException(status_code=404, detail=f"Producto con código {cod} no encontrado")
