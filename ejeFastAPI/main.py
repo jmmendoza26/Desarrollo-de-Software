@@ -1,10 +1,9 @@
 import csv
+import json
 import os
 from fastapi import Body, FastAPI, HTTPException
 
 app = FastAPI()
-
-ARCHIVO_CSV = "productos.csv"
 
 PRODUCTOS_INICIALES = [
     {"codigo": 1, "nombre": "Esfero", "valor": 3500, "existencias": 10},
@@ -12,23 +11,46 @@ PRODUCTOS_INICIALES = [
     {"codigo": 3, "nombre": "Lápiz", "valor": 200, "existencias": 12},
 ]
 
+# --------------------
+# Persistencia con CSV
+# --------------------
+
+# ARCHIVO_CSV = "productos.csv"
+
+# def cargar_productos() -> list[dict]:
+#     if not os.path.exists(ARCHIVO_CSV):
+#         guardar_productos(PRODUCTOS_INICIALES)
+#         return [dict(p) for p in PRODUCTOS_INICIALES]
+#     with open(ARCHIVO_CSV, newline="", encoding="utf-8") as f:
+#         reader = csv.DictReader(f)
+#         return [
+#             {"codigo": int(row["codigo"]), "nombre": row["nombre"],
+#              "valor": float(row["valor"]), "existencias": int(row["existencias"])}
+#             for row in reader
+#         ]
+
+# def guardar_productos(lista: list[dict]):
+#     with open(ARCHIVO_CSV, "w", newline="", encoding="utf-8") as f:
+#         writer = csv.DictWriter(f, fieldnames=["codigo", "nombre", "valor", "existencias"])
+#         writer.writeheader()
+#         writer.writerows(lista)
+
+# --------------------
+# Persistencia con JSON
+# --------------------
+
+ARCHIVO_JSON = "productos.json"
+
 def cargar_productos() -> list[dict]:
-    if not os.path.exists(ARCHIVO_CSV):
+    if not os.path.exists(ARCHIVO_JSON):
         guardar_productos(PRODUCTOS_INICIALES)
         return [dict(p) for p in PRODUCTOS_INICIALES]
-    with open(ARCHIVO_CSV, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        return [
-            {"codigo": int(row["codigo"]), "nombre": row["nombre"],
-             "valor": float(row["valor"]), "existencias": int(row["existencias"])}
-            for row in reader
-        ]
+    with open(ARCHIVO_JSON, encoding="utf-8") as f:
+        return json.load(f)
 
 def guardar_productos(lista: list[dict]):
-    with open(ARCHIVO_CSV, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["codigo", "nombre", "valor", "existencias"])
-        writer.writeheader()
-        writer.writerows(lista)
+    with open(ARCHIVO_JSON, "w", encoding="utf-8") as f:
+        json.dump(lista, f, ensure_ascii=False, indent=2)
 
 productos = cargar_productos()
 
