@@ -1,142 +1,339 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Juan Manuel Mendoza Garces</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
 
-  <body>
-    <div class="page-wrapper">
-      <!-- ── HEADER ──────────────────────────────────────── -->
-      <header>
-        <span class="header-name">Juan Manuel Mendoza Garces</span>
-        <button
-          class="theme-toggle"
-          id="theme-toggle"
-          aria-label="Toggle theme"
-        >
-          <span class="toggle-icon" id="toggle-icon">☀️</span>
-          <span id="toggle-label">Light</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Manuel Mendoza Garces</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ── HEADER ──────────────────────────────────────── -->
+    <header>
+      <span class="header-name">Juan Manuel Mendoza Garces</span>
+      <div class="header-controls">
+
+        <button class="header-btn" id="lang-toggle" aria-label="Cambiar idioma">
+          <span class="btn-icon">🌐</span>
+          <span id="lang-label">ES</span>
         </button>
-      </header>
 
-      <!-- ── PROFILE ─────────────────────────────────────── -->
-      <section id="profile">
-        <div class="avatar-wrapper">
-          <!-- Avatar placeholder: replace src with your actual photo -->
-          <img
-            id="profile-img"
-            src="https://api.dicebear.com/9.x/initials/svg?seed=JM&backgroundColor=2D5BE3&fontFamily=Georgia&fontSize=38&fontWeight=600&textColor=ffffff"
-            alt="Profile avatar of Juan Manuel Mendoza Garces"
-          />
-        </div>
-        <h1 class="profile-name">Juan Manuel Mendoza Garces</h1>
-        <p class="profile-role">Software Development Student</p>
-      </section>
+        <button class="header-btn" id="theme-toggle" aria-label="Toggle theme">
+          <span class="btn-icon" id="toggle-icon">☀️</span>
+          <span id="toggle-label">Claro</span>
+        </button>
 
-      <!-- ── ABOUT ────────────────────────────────────────── -->
-      <section id="about" class="section-card">
-        <p class="section-label">About</p>
-        <p>
-          Software development student focused on building well-structured
-          solutions. My work centers on version control workflows, API
-          development, and writing tests before code. I approach each project
-          with attention to documentation and clean practice from the start.
-        </p>
-      </section>
+      </div>
+    </header>
 
-      <!-- ── INTERESTS ───────────────────────────────────── -->
-      <section id="interests" class="section-card">
-        <p class="section-label">Skills &amp; Interests</p>
-        <ul>
-          <li>Python</li>
-          <li>Git &amp; GitHub</li>
-          <li>Linux / Bash</li>
-          <li>FastAPI</li>
-          <li>REST APIs</li>
-          <li>TDD</li>
-          <li>Technical Documentation</li>
-        </ul>
-      </section>
+    <!-- ── PROFILE ─────────────────────────────────────── -->
+    <section id="profile">
+      <div class="avatar-wrapper">
+        <img
+  src="https://api.dicebear.com/9.x/big-smile/svg?accessories=glasses&eyes=cheery,normal&hair=shortHair,curlyShortHair&hairColor=220f00&mouth=teethSmile&skinColor=c99c62,e2ba87&seed=Jack"
+  alt="avatar" />
+      </div>
+      <h1 class="profile-name">Juan Manuel Mendoza Garces</h1>
+      <p class="profile-role" data-es="Ingeniero de Sistemas y Computación" data-en="Systems &amp; Computing Engineer">
+        Ingeniero de Sistemas y Computación
+      </p>
+    </section>
 
-      <!-- ── CONTACT ──────────────────────────────────────── -->
-      <section id="contact" class="section-card">
-        <p class="section-label">Contact</p>
-        <ul class="contact-list">
-          <!-- Email -->
-          <li>
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="3" />
-                <polyline points="2,4 12,14 22,4" />
+    <!-- ── ABOUT ────────────────────────────────────────── -->
+    <section id="about" class="section-card">
+      <p class="section-label" data-es="Sobre mí" data-en="About">Sobre mí</p>
+      <p class="i18n-text"
+         data-es="Estudiante de ingeniería de sistemas y computación con interés en construir software sólido y bien documentado. Me muevo con comodidad entre el desarrollo de aplicaciones, la administración de sistemas y los fundamentos de redes e infraestructura. Disfruto entender cómo funcionan las cosas por dentro."
+         data-en="Systems and computing engineering student with a interest in building solid, well-documented software. I work comfortably across application development, systems administration, and networking fundamentals. I enjoy understanding how things work under the hood.">
+        Estudiante de ingeniería de sistemas y computación con interés en construir software sólido y bien documentado. Me muevo con comodidad entre el desarrollo de aplicaciones, la administración de sistemas y los fundamentos de redes e infraestructura. Disfruto entender cómo funcionan las cosas por dentro.
+      </p>
+    </section>
+
+    <!-- ── SKILLS ───────────────────────────────────────── -->
+    <section id="skills" class="section-card">
+      <p class="section-label" data-es="Habilidades" data-en="Skills">Habilidades</p>
+      <ul class="chip-list">
+
+        <li class="chip" style="--chip-color:#3776AB; --chip-bg:rgba(55,118,171,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#3776AB" d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.031v-2.867s-.109-3.403 3.343-3.403h5.766s3.232.052 3.232-3.124V3.147S18.28 0 11.914 0zm-3.2 1.814a1.04 1.04 0 0 1 1.043 1.043 1.04 1.04 0 0 1-1.043 1.043 1.04 1.04 0 0 1-1.043-1.043 1.04 1.04 0 0 1 1.043-1.043z"/>
+            <path fill="#FFD43B" d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752H12v-.826h8.1S24 18.211 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.031v2.867s.109 3.403-3.343 3.403H9.457s-3.232-.052-3.232 3.124v5.388S5.72 24 12.086 24zm3.2-1.814a1.04 1.04 0 0 1-1.043-1.043 1.04 1.04 0 0 1 1.043-1.043 1.04 1.04 0 0 1 1.043 1.043 1.04 1.04 0 0 1-1.043 1.043z"/>
+          </svg>
+          <span class="chip-name" data-es="Python" data-en="Python">Python</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#F05032; --chip-bg:rgba(240,80,50,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#F05032" d="M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 1 1-1.102 1.102l-2.48-2.48v6.535a1.838 1.838 0 1 1-1.517-.036V9.01a1.838 1.838 0 0 1-.997-2.41L7.614 3.87.452 11.032a1.55 1.55 0 0 0 0 2.188l10.48 10.478a1.55 1.55 0 0 0 2.188 0l10.426-10.426a1.55 1.55 0 0 0 0-2.188z"/>
+          </svg>
+          <span class="chip-name" data-es="Git" data-en="Git">Git</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#24292E; --chip-bg:rgba(36,41,46,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#24292E" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          <span class="chip-name" data-es="GitHub" data-en="GitHub">GitHub</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#35BF5C; --chip-bg:rgba(53,191,92,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#35BF5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+          <span class="chip-name" data-es="Linux / Bash" data-en="Linux / Bash">Linux / Bash</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#009688; --chip-bg:rgba(0,150,136,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          <span class="chip-name" data-es="FastAPI" data-en="FastAPI">FastAPI</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#6366F1; --chip-bg:rgba(99,102,241,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M3 12h3m12 0h3M12 3v3m0 12v3"/>
+            <path d="M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+          </svg>
+          <span class="chip-name" data-es="APIs REST" data-en="REST APIs">APIs REST</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#E53E3E; --chip-bg:rgba(229,62,62,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#E53E3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          <span class="chip-name" data-es="TDD" data-en="TDD">TDD</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#718096; --chip-bg:rgba(113,128,150,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <line x1="10" y1="9" x2="8" y2="9"/>
+          </svg>
+          <span class="chip-name" data-es="Documentación técnica" data-en="Technical Documentation">Documentación técnica</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#1565C0; --chip-bg:rgba(21,101,192,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#1565C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+          <span class="chip-name" data-es="Bases de datos SQL y NoSQL" data-en="SQL &amp; NoSQL Databases">Bases de datos SQL y NoSQL</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#0097A7; --chip-bg:rgba(0,151,167,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#0097A7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="6" height="4" rx="1"/>
+            <rect x="16" y="2" width="6" height="4" rx="1"/>
+            <rect x="9" y="10" width="6" height="4" rx="1"/>
+            <rect x="2" y="18" width="6" height="4" rx="1"/>
+            <rect x="16" y="18" width="6" height="4" rx="1"/>
+            <path d="M5 6v4m14-4v4M12 14v4M5 18v-4m14 4v-4M8 12h2m6 0h-2"/>
+          </svg>
+          <span class="chip-name" data-es="Redes computacionales" data-en="Computer Networks">Redes computacionales</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#E65100; --chip-bg:rgba(230,81,0,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#E65100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <span class="chip-name" data-es="Modelado y simulación" data-en="Modeling &amp; Simulation">Modelado y simulación</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#2E7D32; --chip-bg:rgba(46,125,50,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="chip-name" data-es="Seguridad informática" data-en="Cybersecurity">Seguridad informática</span>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ── INTERESTS ───────────────────────────────────── -->
+    <section id="interests" class="section-card">
+      <p class="section-label" data-es="Intereses" data-en="Interests">Intereses</p>
+      <ul class="chip-list">
+
+        <li class="chip" style="--chip-color:#7C3AED; --chip-bg:rgba(124,58,237,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="11" y1="8" x2="11" y2="14"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+          <span class="chip-name" data-es="Investigación" data-en="Research">Investigación</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#0EA5E9; --chip-bg:rgba(14,165,233,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          <span class="chip-name" data-es="Lectura de ciencia ficción" data-en="Sci-Fi Reading">Lectura de ciencia ficción</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#F59E0B; --chip-bg:rgba(245,158,11,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8m-4-4v4"/>
+          </svg>
+          <span class="chip-name" data-es="Series y películas" data-en="Series &amp; Films">Series y películas</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#10B981; --chip-bg:rgba(16,185,129,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="2"/>
+            <circle cx="12" cy="17" r="1"/>
+            <path d="M9 6h6"/>
+          </svg>
+          <span class="chip-name" data-es="Videojuegos" data-en="Video Games">Videojuegos</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#3B82F6; --chip-bg:rgba(59,130,246,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="4" height="4" rx="1"/>
+            <rect x="10" y="2" width="4" height="4" rx="1"/>
+            <rect x="18" y="2" width="4" height="4" rx="1"/>
+            <rect x="6" y="10" width="4" height="4" rx="1"/>
+            <rect x="14" y="10" width="4" height="4" rx="1"/>
+            <rect x="10" y="18" width="4" height="4" rx="1"/>
+            <path d="M4 6v2m8-2v2m8-2v2M8 12v2m8-2v2M12 22v-2"/>
+          </svg>
+          <span class="chip-name" data-es="Inteligencia Artificial" data-en="Artificial Intelligence">Inteligencia Artificial</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#EF4444; --chip-bg:rgba(239,68,68,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <path d="M9 2v2m6-2v2M9 20v2m6-2v2M2 9h2m-2 6h2m18-6h-2m2 6h-2"/>
+          </svg>
+          <span class="chip-name" data-es="Hardware y Software" data-en="Hardware &amp; Software">Hardware y Software</span>
+        </li>
+
+        <li class="chip" style="--chip-color:#EC4899; --chip-bg:rgba(236,72,153,0.10);">
+          <svg class="chip-icon" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span class="chip-name" data-es="Animación" data-en="Animation">Animación</span>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ── CONTACT ──────────────────────────────────────── -->
+    <section id="contact" class="section-card contact-card">
+      <p class="section-label" data-es="Contacto" data-en="Contact">Contacto</p>
+      <ul class="contact-list">
+
+        <li>
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <polyline points="2,4 12,14 22,4"/>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label" data-es="Correo" data-en="Email">Correo</span>
+            <a class="contact-value" href="mailto:jmmendoza26@ucatolica.edu.co">
+              jmmendoza26@ucatolica.edu.co
+            </a>
+          </div>
+        </li>
+
+        <li>
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">GitHub</span>
+            <a class="contact-value contact-external" href="https://github.com/jmmendoza26" target="_blank" rel="noopener noreferrer">
+              github.com/jmmendoza26
+              <svg class="external-icon" viewBox="0 0 12 12" aria-label="Abre en nueva pestaña">
+                <path fill="currentColor" d="M2 2h4v1H3v6h6V7h1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm4 0h4v4h-1V3.7L5.85 7.85l-.7-.7L9.3 3H7V2z"/>
               </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">Email</span>
-              <!-- Replace href and text with your institutional email -->
-              <a
-                class="contact-value"
-                href="mailto:tucorreo@institucion.edu.co"
-              >
-                tucorreo@institucion.edu.co
-              </a>
-            </div>
-          </li>
+            </a>
+          </div>
+        </li>
 
-          <!-- GitHub -->
-          <li>
-            <div class="contact-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61
-                       c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77
-                       5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0
-                       C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78
-                       c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-                />
-              </svg>
-            </div>
-            <div class="contact-info">
-              <span class="contact-label">GitHub</span>
-              <!-- Replace href and text with your institutional GitHub -->
-              <a
-                class="contact-value"
-                href="https://github.com/tu-usuario"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                github.com/tu-usuario
-              </a>
-            </div>
-          </li>
-        </ul>
-      </section>
+      </ul>
+    </section>
 
-      <!-- ── FOOTER ───────────────────────────────────────── -->
-      <footer>
-        <p>Student ID 67001026 &nbsp;·&nbsp; Software Development</p>
-      </footer>
-    </div>
-    <!-- /page-wrapper -->
+    <!-- ── FOOTER ───────────────────────────────────────── -->
+    <footer>
+      <p>
+        <span data-es="Código estudiantil" data-en="Student ID">Código estudiantil</span>
+        67001026 &nbsp;·&nbsp;
+        <span data-es="Ingeniería de Sistemas y Computación" data-en="Software Development">Ingeniería de Sistemas y Computación</span>
+      </p>
+    </footer>
 
-    <!-- ── THEME TOGGLE SCRIPT ──────────────────────────── -->
-    <script>
-      const html = document.documentElement;
-      const btn = document.getElementById("theme-toggle");
-      const icon = document.getElementById("toggle-icon");
-      const label = document.getElementById("toggle-label");
+  </div><!-- /page-wrapper -->
 
-      // Start in light mode
-      let isDark = false;
+  <!-- ── SCRIPTS ───────────────────────────────────────── -->
+  <script>
+    /* ── THEME ─────────────────────────────────── */
+    const html       = document.documentElement;
+    const themeBtn   = document.getElementById('theme-toggle');
+    const themeIcon  = document.getElementById('toggle-icon');
+    const themeLabel = document.getElementById('toggle-label');
+    let isDark = false;
 
-      btn.addEventListener("click", () => {
-        isDark = !isDark;
-        html.setAttribute("data-theme", isDark ? "dark" : "light");
-        icon.textContent = isDark ? "🌙" : "☀️";
-        label.textContent = isDark ? "Dark" : "Light";
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      themeIcon.textContent = isDark ? '🌙' : '☀️';
+      themeLabel.textContent = isDark
+        ? (isEN ? 'Dark'   : 'Oscuro')
+        : (isEN ? 'Light'  : 'Claro');
+    });
+
+    /* ── LANGUAGE ──────────────────────────────── */
+    const langBtn   = document.getElementById('lang-toggle');
+    const langLabel = document.getElementById('lang-label');
+    let isEN = false;
+
+    function applyLanguage() {
+      const lang = isEN ? 'en' : 'es';
+      html.setAttribute('lang', lang);
+      langLabel.textContent = isEN ? 'EN' : 'ES';
+
+      document.querySelectorAll('[data-es]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text !== null) el.textContent = text;
       });
-    </script>
-  </body>
+
+      // Re-sync theme label
+      themeLabel.textContent = isDark
+        ? (isEN ? 'Dark'  : 'Oscuro')
+        : (isEN ? 'Light' : 'Claro');
+    }
+
+    langBtn.addEventListener('click', () => {
+      document.body.style.transition = 'opacity 0.15s ease';
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        isEN = !isEN;
+        applyLanguage();
+        document.body.style.opacity = '1';
+      }, 150);
+    });
+  </script>
+
+</body>
 </html>
