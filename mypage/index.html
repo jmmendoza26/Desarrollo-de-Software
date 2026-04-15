@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juan Manuel Mendoza Garces</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="page-wrapper">
+      <!-- ── HEADER ──────────────────────────────────────── -->
+      <header>
+        <span class="header-name">Juan Manuel Mendoza Garces</span>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <span class="toggle-icon" id="toggle-icon">☀️</span>
+          <span id="toggle-label">Light</span>
+        </button>
+      </header>
+
+      <!-- ── PROFILE ─────────────────────────────────────── -->
+      <section id="profile">
+        <div class="avatar-wrapper">
+          <!-- Avatar placeholder: replace src with your actual photo -->
+          <img
+            id="profile-img"
+            src="https://api.dicebear.com/9.x/initials/svg?seed=JM&backgroundColor=2D5BE3&fontFamily=Georgia&fontSize=38&fontWeight=600&textColor=ffffff"
+            alt="Profile avatar of Juan Manuel Mendoza Garces"
+          />
+        </div>
+        <h1 class="profile-name">Juan Manuel Mendoza Garces</h1>
+        <p class="profile-role">Software Development Student</p>
+      </section>
+
+      <!-- ── ABOUT ────────────────────────────────────────── -->
+      <section id="about" class="section-card">
+        <p class="section-label">About</p>
+        <p>
+          Software development student focused on building well-structured
+          solutions. My work centers on version control workflows, API
+          development, and writing tests before code. I approach each project
+          with attention to documentation and clean practice from the start.
+        </p>
+      </section>
+
+      <!-- ── INTERESTS ───────────────────────────────────── -->
+      <section id="interests" class="section-card">
+        <p class="section-label">Skills &amp; Interests</p>
+        <ul>
+          <li>Python</li>
+          <li>Git &amp; GitHub</li>
+          <li>Linux / Bash</li>
+          <li>FastAPI</li>
+          <li>REST APIs</li>
+          <li>TDD</li>
+          <li>Technical Documentation</li>
+        </ul>
+      </section>
+
+      <!-- ── CONTACT ──────────────────────────────────────── -->
+      <section id="contact" class="section-card">
+        <p class="section-label">Contact</p>
+        <ul class="contact-list">
+          <!-- Email -->
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="3" />
+                <polyline points="2,4 12,14 22,4" />
+              </svg>
+            </div>
+            <div class="contact-info">
+              <span class="contact-label">Email</span>
+              <!-- Replace href and text with your institutional email -->
+              <a
+                class="contact-value"
+                href="mailto:tucorreo@institucion.edu.co"
+              >
+                tucorreo@institucion.edu.co
+              </a>
+            </div>
+          </li>
+
+          <!-- GitHub -->
+          <li>
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61
+                       c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77
+                       5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0
+                       C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78
+                       c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                />
+              </svg>
+            </div>
+            <div class="contact-info">
+              <span class="contact-label">GitHub</span>
+              <!-- Replace href and text with your institutional GitHub -->
+              <a
+                class="contact-value"
+                href="https://github.com/tu-usuario"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/tu-usuario
+              </a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ── FOOTER ───────────────────────────────────────── -->
+      <footer>
+        <p>Student ID 67001026 &nbsp;·&nbsp; Software Development</p>
+      </footer>
+    </div>
+    <!-- /page-wrapper -->
+
+    <!-- ── THEME TOGGLE SCRIPT ──────────────────────────── -->
+    <script>
+      const html = document.documentElement;
+      const btn = document.getElementById("theme-toggle");
+      const icon = document.getElementById("toggle-icon");
+      const label = document.getElementById("toggle-label");
+
+      // Start in light mode
+      let isDark = false;
+
+      btn.addEventListener("click", () => {
+        isDark = !isDark;
+        html.setAttribute("data-theme", isDark ? "dark" : "light");
+        icon.textContent = isDark ? "🌙" : "☀️";
+        label.textContent = isDark ? "Dark" : "Light";
+      });
+    </script>
+  </body>
+</html>
