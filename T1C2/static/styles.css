@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+/* Variables de color y tipografía */
+:root {
+    --fondo:       #eef2f7;
+    --superficie:  #ffffff;
+    --cabecera:    #1e3a5f;
+    --texto:       #1a1a2e;
+    --texto-suave: #6b7280;
+    --borde:       #dde3ec;
+
+    --bajo-color:  #991b1b;
+    --bajo-fondo:  #fee2e2;
+    --medio-color: #92400e;
+    --medio-fondo: #fef3c7;
+    --alto-color:  #166534;
+    --alto-fondo:  #dcfce7;
+}
+
+/* Base */
+body {
+    margin: 0;
+    padding: 50px 20px;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+}
+
+/* Contenedor centrado */
+.container {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+header {
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--cabecera);
+}
+
+header h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--cabecera);
+    margin: 0 0 4px 0;
+}
+
+header .subtitle {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--superficie);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+}
+
+thead th {
+    background-color: var(--cabecera);
+    color: #ffffff;
+    padding: 13px 16px;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--borde);
+    transition: background 0.12s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+
+tbody tr:hover { background-color: #f0f4fa; }
+
+tbody td {
+    padding: 13px 16px;
+    font-size: 0.92rem;
+    text-align: center;
+}
+
+/* Badges de estado */
+.estado {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.estado-bajo  { color: var(--bajo-color);  background: var(--bajo-fondo); }
+.estado-medio { color: var(--medio-color); background: var(--medio-fondo); }
+.estado-alto  { color: var(--alto-color);  background: var(--alto-fondo); }
