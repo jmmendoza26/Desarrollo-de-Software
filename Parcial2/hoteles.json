@@ -1,0 +1,32 @@
+[
+    {
+        "codigo": 101,
+        "nombre": "Hotel Bogotá Plaza",
+        "ciudad": "Bogotá",
+        "valorNoche": 280000
+    },
+    {
+        "codigo": 102,
+        "nombre": "Casa Medina",
+        "ciudad": "Bogotá",
+        "valorNoche": 350000
+    },
+    {
+        "codigo": 103,
+        "nombre": "Hotel de la Ópera",
+        "ciudad": "Bogotá",
+        "valorNoche": 420000
+    },
+    {
+        "codigo": 200,
+        "nombre": "Hola",
+        "ciudad": "Cali",
+        "valorNoche": 5000.0
+    },
+    {
+        "codigo": 203,
+        "nombre": "Hola",
+        "ciudad": "Cali",
+        "valorNoche": 5000.0
+    }
+]

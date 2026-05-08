@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Hoteles</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Lista de Hoteles</h1>
+            <p class="subtitle">Desarrollo de Software &mdash; Parcial 2 &mdash; Juan Manuel Mendoza - 67001026</p>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Ciudad</th>
+                    <th>Valor Noche</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hotel in hoteles %}
+                <tr>
+                    <td>{{ hotel.codigo }}</td>
+                    <td>{{ hotel.nombre }}</td>
+                    <td>{{ hotel.ciudad }}</td>
+                    <td>${{ "{:,.0f}".format(hotel.valorNoche) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
