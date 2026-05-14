@@ -33,21 +33,39 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/lista")
-def leer_hotel():
+def leer_hoteles():
     with Session(engine) as session:
         hoteles = session.exec(select(hotel)).all()
         return {"hoteles":hoteles}
 
+@app.get("/hotel/{codigo}")
+def buscar_hotel_por_codigo(codigo: int):
+    with Session(engine) as session:
+        h = session.get(hotel, codigo)
+        if not h:
+            raise HTTPException(status_code=404, detail="Hotel no encontrado")
+        return h
+
+@app.get("/ciudad/{ciudad}")
+def buscar_hoteles_por_ciudad(ciudad: str):
+    with Session(engine) as session:
+        hoteles = session.exec(select(hotel).where(hotel.ciudad == ciudad)).all()
+        return {"hoteles":hoteles}
+
+@app.post("/hotel", status_code=201)
+def adicionar_hotel(nuevo_hotel: hotel):
+    with Session(engine) as session:
+        session.add(nuevo_hotel)
+        session.commit()
+        session.refresh(nuevo_hotel)
+        return nuevo_hotel
+
 @app.get("/")
-async def leer_hotel(request: Request):
+async def pagina_principal(request: Request):
     with Session(engine) as session:
         hoteles = session.exec(select(hotel)).all()
         return templates.TemplateResponse(
             "index.html",{"request":request,"hoteles":hoteles}
             )
 
-@app.get("/buscar")
-async def hotel_cod(request: Request):
-    with Session(engine) as session:
-        hoteles = session.exec(select(hotel))
-    pass   
+   
